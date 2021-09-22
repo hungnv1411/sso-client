@@ -5,7 +5,7 @@ import path from 'path';
 import { IdentityProvider, IdentityProviderOptions, ServiceProvider, ServiceProviderOptions } from 'saml2-js';
 
 const ssoServerUrl = 'http://sso.hungnv.org';
-const spBaseEndpoint = '/saml';
+const spBaseEndpoint = 'https://sso-client-demo.herokuapp.com/saml';
 
 class AuthController {
   public authService = new AuthService();
