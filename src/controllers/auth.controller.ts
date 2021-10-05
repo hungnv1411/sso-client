@@ -4,8 +4,8 @@ import fs from 'fs';
 import path from 'path';
 import { IdentityProvider, IdentityProviderOptions, ServiceProvider, ServiceProviderOptions } from 'saml2-js';
 
-const ssoServerUrl = 'http://sso.hungnv.org';
-const spBaseEndpoint = 'http://ec2-13-212-240-235.ap-southeast-1.compute.amazonaws.com/saml';
+const ssoServerUrl = 'http://localhost:7000';
+const spBaseEndpoint = 'http://localhost:3000/saml';
 
 class AuthController {
   public authService = new AuthService();
