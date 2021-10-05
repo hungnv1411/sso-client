@@ -17,7 +17,7 @@ class AuthRoute implements Routes {
     this.router.get(`${this.path}/logout`, this.authController.logOut);
     this.router.post(`${this.path}/assert`, this.authController.doAssert);
     this.router.post(`${this.path}/logout`, this.authController.doLogout);
-    this.router.get(`/home`, this.authController.home);
+    this.router.get(`/home`, this.authController.redirectLoginMiddleware, this.authController.home);
   }
 }
 

@@ -2,5 +2,6 @@ extends layout
 
 block content
   h1= title
-  p Hello #{userName}
+  if userName
+    p Hello #{userName}
   p Welcome to #{title}

@@ -5,7 +5,7 @@ import path from 'path';
 import { IdentityProvider, IdentityProviderOptions, ServiceProvider, ServiceProviderOptions } from 'saml2-js';
 
 const ssoServerUrl = 'http://localhost:7000';
-const spBaseEndpoint = 'http://localhost:3000/saml';
+const spBaseEndpoint = 'http://localhost:3000';
 
 class AuthController {
   public authService = new AuthService();
@@ -15,10 +15,10 @@ class AuthController {
   constructor() {
     try {
       const spOptions: ServiceProviderOptions = {
-        entity_id: `${spBaseEndpoint}/metadata`,
+        entity_id: `${spBaseEndpoint}/saml/metadata`,
         private_key: fs.readFileSync(path.join(__dirname, '../../keys/sp-private-key.pem')).toString(),
         certificate: fs.readFileSync(path.join(__dirname, '../../keys/sp-public-cert.pem')).toString(),
-        assert_endpoint: `${spBaseEndpoint}/assert`,
+        assert_endpoint: `${spBaseEndpoint}/saml/assert`,
       };
       const idpOptions: IdentityProviderOptions = {
         sso_login_url: `${ssoServerUrl}/saml/sso`,
@@ -103,7 +103,7 @@ class AuthController {
   public home = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
     res.render('home', {
       title: 'Home',
-      userName: req.session.user ? req.session.user.name_id : 'null',
+      userName: req.session.user ? req.session.user.name_id : undefined,
     });
   };
 
